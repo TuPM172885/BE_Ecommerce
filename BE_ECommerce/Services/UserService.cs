@@ -1,5 +1,5 @@
 ﻿using BE_ECommerce.DTOs;
-using BE_ECommerce.Models;
+using BE_ECommerce.Entities;
 using BE_ECommerce.Repositories;
 using BE_ECommerce.Utils;
 
@@ -43,18 +43,33 @@ namespace BE_ECommerce.Services
             return new UserDto { Id = created.Id, Username = created.Username, Email = created.Email, Role = created.Role };
         }
 
-        public async Task UpdateAsync(int id, CreateUserDto dto)
+        public async Task<User?> UpdateAsync(int id, CreateUserDto dto)
         {
             var user = await _repo.GetByIdAsync(id);
-            if (user == null) throw new Exception("User not found");
+            if (user == null)
+                return null;
 
             user.Username = dto.Username;
             user.Email = dto.Email;
-            user.PasswordHash = PasswordHelper.HashPassword(dto.Password);
+
+            if (!string.IsNullOrEmpty(dto.Password))
+            {
+                user.PasswordHash = PasswordHelper.HashPassword(dto.Password);
+            }
+
             await _repo.UpdateAsync(user);
+            return user;
         }
 
-        public async Task DeleteAsync(int id) => await _repo.DeleteAsync(id);
+        public async Task<bool> DeleteAsync(int id)
+        {
+            var user = await _repo.GetByIdAsync(id);
+            if (user == null)
+                return false;
+
+            await _repo.DeleteAsync(id);
+            return true;
+        }
     }
 
 }

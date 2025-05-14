@@ -1,4 +1,5 @@
 ﻿using BE_ECommerce.DTOs;
+using BE_ECommerce.Entities;
 
 namespace BE_ECommerce.Services
 {
@@ -7,8 +8,8 @@ namespace BE_ECommerce.Services
         Task<List<UserDto>> GetAllAsync();
         Task<UserDto?> GetByIdAsync(int id);
         Task<UserDto> CreateAsync(CreateUserDto dto);
-        Task UpdateAsync(int id, CreateUserDto dto);
-        Task DeleteAsync(int id);
+        Task<User?> UpdateAsync(int id, CreateUserDto dto);
+        Task<bool> DeleteAsync(int id);
     }
 
 }

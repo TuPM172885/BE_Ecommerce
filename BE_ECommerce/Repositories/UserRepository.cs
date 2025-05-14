@@ -1,39 +1,49 @@
-﻿using BE_ECommerce.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using BE_ECommerce.Entities;
 
 namespace BE_ECommerce.Repositories
 {
     public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _context;
-        public UserRepository(AppDbContext context) => _context = context;
+        private readonly DbSet<User> _dbSet;
 
-        public async Task<List<User>> GetAllAsync() => await _context.Users.ToListAsync();
+        public UserRepository(AppDbContext context)
+        {
+            _context = context;
+            _dbSet = context.Set<User>();
+        }
 
-        public async Task<User?> GetByIdAsync(int id) => await _context.Users.FindAsync(id);
+        public async Task<List<User>> GetAllAsync()
+        {
+            return await _dbSet.ToListAsync();
+        }
+
+        public async Task<User?> GetByIdAsync(int id)
+        {
+            return await _dbSet.FindAsync(id);
+        }
 
         public async Task<User> CreateAsync(User user)
         {
-            _context.Users.Add(user);
+            await _dbSet.AddAsync(user);
             await _context.SaveChangesAsync();
             return user;
         }
 
         public async Task UpdateAsync(User user)
         {
-            _context.Users.Update(user);
+            _dbSet.Update(user);
             await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)
         {
             var user = await GetByIdAsync(id);
-            if (user != null)
-            {
-                _context.Users.Remove(user);
-                await _context.SaveChangesAsync();
-            }
+            if (user == null) return;
+
+            _dbSet.Remove(user);
+            await _context.SaveChangesAsync();
         }
     }
-
 }

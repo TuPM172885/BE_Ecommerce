@@ -1,4 +1,4 @@
-﻿using BE_ECommerce.Models;
+﻿using BE_ECommerce.Entities;
 
 namespace BE_ECommerce.Repositories
 {

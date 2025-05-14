@@ -144,3 +144,4 @@ C:\Users\63200514\Desktop\Learning\ECommerce\BE_ECommerce\BE_ECommerce\bin\Debug
 C:\Users\63200514\Desktop\Learning\ECommerce\BE_ECommerce\BE_ECommerce\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
 C:\Users\63200514\Desktop\Learning\ECommerce\BE_ECommerce\BE_ECommerce\bin\Debug\net8.0\BCrypt.Net.dll
 C:\Users\63200514\Desktop\Learning\ECommerce\BE_ECommerce\BE_ECommerce\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\63200514\Desktop\Learning\ECommerce\BE_ECommerce\BE_ECommerce\obj\Debug\net8.0\BE_ECommerce.sourcelink.json
