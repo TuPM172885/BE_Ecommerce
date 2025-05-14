@@ -1,5 +1,5 @@
 ﻿using BE_ECommerce.DTOs;
-using BE_ECommerce.Entities;
+using BE_ECommerce.Models;
 
 namespace BE_ECommerce.Services
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using BE_ECommerce.Entities;
+using BE_ECommerce.Models;
 
 namespace BE_ECommerce.Repositories
 {

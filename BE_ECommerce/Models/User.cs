@@ -2,37 +2,29 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace BE_ECommerce.Entities
+namespace BE_ECommerce.Models
 {
-    [Table("USERS")] // Alias bảng trong Oracle
+    [Table("users")] 
     public class User
     {
         [Key]
-        [Column("USER_ID")]
-        public int Id { get; set; } // Oracle: NUMBER
-
-        [Required]
-        [MaxLength(100)]
-        [Column("USERNAME")]
+        [Column("user_id")] 
+        public int user_id { get; set; }
+       
+        [Column("username")]  
         public string Username { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(200)]
-        [EmailAddress] // Optional: validate email format
-        [Column("EMAIL")]
+        [Column("email")]  
         public string Email { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(256)]
-        [Column("PASSWORD_HASH")]
+        [Column("password_hash")]  
         public string PasswordHash { get; set; } = string.Empty;
 
-        [Required]
-        [MaxLength(20)]
-        [Column("ROLE")]
-        public string Role { get; set; } = "Customer"; // "Admin" | "Customer"
+        [Column("created_dtg")]  
+        public DateTime CreatedDtg { get; set; } = DateTime.UtcNow;
 
-        [Column("CREATED_AT")]
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        [Column("created_by")]
+        public string CreatedBy { get; set; } = string.Empty;
+
     }
 }

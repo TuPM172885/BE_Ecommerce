@@ -1,5 +1,5 @@
 ﻿using BE_ECommerce.DTOs;
-using BE_ECommerce.Entities;
+using BE_ECommerce.Models;
 using BE_ECommerce.Repositories;
 using BE_ECommerce.Utils;
 
@@ -16,10 +16,9 @@ namespace BE_ECommerce.Services
             var users = await _repo.GetAllAsync();
             return users.Select(u => new UserDto
             {
-                Id = u.Id,
+                Id = u.user_id,
                 Username = u.Username,
-                Email = u.Email,
-                Role = u.Role
+                Email = u.Email
             }).ToList();
         }
 
@@ -27,7 +26,7 @@ namespace BE_ECommerce.Services
         {
             var u = await _repo.GetByIdAsync(id);
             if (u == null) return null;
-            return new UserDto { Id = u.Id, Username = u.Username, Email = u.Email, Role = u.Role };
+            return new UserDto { Id = u.user_id, Username = u.Username, Email = u.Email };
         }
 
         public async Task<UserDto> CreateAsync(CreateUserDto dto)
@@ -37,10 +36,9 @@ namespace BE_ECommerce.Services
                 Username = dto.Username,
                 Email = dto.Email,
                 PasswordHash = PasswordHelper.HashPassword(dto.Password),
-                Role = "Customer"
             };
             var created = await _repo.CreateAsync(user);
-            return new UserDto { Id = created.Id, Username = created.Username, Email = created.Email, Role = created.Role };
+            return new UserDto { Id = created.user_id, Username = created.Username, Email = created.Email };
         }
 
         public async Task<User?> UpdateAsync(int id, CreateUserDto dto)
