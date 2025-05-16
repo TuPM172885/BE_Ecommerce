@@ -9,22 +9,22 @@ namespace BE_ECommerce.Models
     {
         [Key]
         [Column("user_id")] 
-        public int user_id { get; set; }
+        public int? UserId { get; set; }
        
         [Column("username")]  
-        public string Username { get; set; } = string.Empty;
+        public string? UserName { get; set; } 
 
         [Column("email")]  
-        public string Email { get; set; } = string.Empty;
+        public string? Email { get; set; } 
 
-        [Column("password_hash")]  
-        public string PasswordHash { get; set; } = string.Empty;
+        [Column("password")]  
+        public string? Password { get; set; }
 
         [Column("created_dtg")]  
-        public DateTime CreatedDtg { get; set; } = DateTime.UtcNow;
+        public DateTime? CreatedDtg { get; set; } 
 
         [Column("created_by")]
-        public string CreatedBy { get; set; } = string.Empty;
+        public string? CreatedBy { get; set; } 
 
     }
 }
