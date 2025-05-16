@@ -5,7 +5,7 @@ using BE_ECommerce.DTOs;
 
 namespace BE_ECommerce.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     public class UserController : BaseApiController
     {
         private readonly IUserService _userService;
